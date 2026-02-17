@@ -1,0 +1,75 @@
+import { prisma } from '@/lib/prisma'
+import { projects } from '@/lib/static-data'
+import type { MetadataRoute } from 'next'
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://mahavishnudevhub.com'
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Static pages
+  const staticPages: MetadataRoute.Sitemap = [
+    {
+      url: BASE_URL,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    {
+      url: `${BASE_URL}/about-us`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/blogs`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/contact-us`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+  ]
+
+  // Dynamic blog pages
+  let blogPages: MetadataRoute.Sitemap = []
+  try {
+    const blogs = await prisma.blog.findMany({
+      where: { published: true },
+      select: { slug: true, updatedAt: true },
+    })
+    blogPages = blogs.map((blog) => ({
+      url: `${BASE_URL}/blogs/${blog.slug}`,
+      lastModified: blog.updatedAt,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
+  } catch {
+    // DB not available, skip dynamic pages
+  }
+
+  // Static project pages
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${BASE_URL}/projects/${project.slug}`,
+    lastModified: new Date(project.createdAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
+  return [...staticPages, ...blogPages, ...projectPages]
+}

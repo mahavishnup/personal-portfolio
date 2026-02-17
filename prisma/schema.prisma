@@ -10,39 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  name      String?
-  email     String   @unique
-  password  String
-  role      String   @default("ADMIN")
-  createdAt DateTime @default(now())
-}
-
 model Blog {
-  id        String   @id @default(cuid())
-  title     String
-  slug      String   @unique
-  excerpt   String?
-  content   String
+  id         String   @id @default(cuid())
+  title      String
+  slug       String   @unique
+  excerpt    String?
+  content    String
   coverImage String?
-  tags      Json?
-  published Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Project {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique
-  description String?
-  techStack   Json?
-  githubUrl   String?
-  liveUrl     String?
-  coverImage  String?
-  featured    Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  tags       Json?
+  published  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Message {
@@ -50,5 +28,11 @@ model Message {
   name      String
   email     String
   message   String
+  createdAt DateTime @default(now())
+}
+
+model Newsletter {
+  id        String   @id @default(cuid())
+  email     String   @unique
   createdAt DateTime @default(now())
 }
