@@ -117,13 +117,12 @@ src/
 2. Import the repo on [vercel.com](https://vercel.com)
 3. Add environment variables in Vercel dashboard:
    - `DATABASE_URL`
-   - `DIRECT_URL`
    - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_SITE_URL` _(optional — defaults to `https://mahavishnudevhub.com`)_
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
+   - `NEXT_PUBLIC_SITE_URL` _(optional — defaults to `http://localhost:3000`)_
 4. Deploy!
 
-> **Note:** `NEXT_PUBLIC_SITE_URL` falls back to `https://mahavishnudevhub.com` if not set. If you use a custom domain on Vercel, set this variable to your custom domain URL.
+> **Note:** `NEXT_PUBLIC_SITE_URL` falls back to `http://localhost:3000` if not set. If you use a custom domain on Vercel, set this variable to your custom domain URL.
 
 ---
 

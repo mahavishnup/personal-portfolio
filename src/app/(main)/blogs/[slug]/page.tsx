@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, CalendarIcon, Clock } from 'lucide-react'
 import type { Metadata } from 'next'
+import { env } from '@/env'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -84,8 +85,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const words = post.content.split(/\s+/).length
   const readTime = Math.ceil(words / wordsPerMinute)
 
-  const BASE_URL =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://mahavishnudevhub.com'
+  const BASE_URL = env.NEXT_PUBLIC_SITE_URL
 
   const jsonLd = {
     '@context': 'https://schema.org',

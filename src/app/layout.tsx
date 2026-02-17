@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { env } from '@/env'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -14,8 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://mahavishnudevhub.com'
+const BASE_URL = env.NEXT_PUBLIC_SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

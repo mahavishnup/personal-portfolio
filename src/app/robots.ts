@@ -1,7 +1,7 @@
+import { env } from '@/env'
 import type { MetadataRoute } from 'next'
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://mahavishnudevhub.com'
+const BASE_URL = env.NEXT_PUBLIC_SITE_URL
 
 export default function robots(): MetadataRoute.Robots {
   return {

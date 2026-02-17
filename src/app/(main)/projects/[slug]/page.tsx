@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import { projects } from '@/lib/static-data'
+import { env } from '@/env'
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>
@@ -21,8 +22,7 @@ export async function generateMetadata({ params }: ProjectDetailPageProps) {
 
   if (!project) return { title: 'Project Not Found' }
 
-  const BASE_URL =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://mahavishnudevhub.com'
+  const BASE_URL = env.NEXT_PUBLIC_SITE_URL
 
   return {
     title: project.title,
@@ -54,8 +54,7 @@ export default async function ProjectDetailPage({
 
   const techStack = project.techStack || []
 
-  const BASE_URL =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://mahavishnudevhub.com'
+  const BASE_URL = env.NEXT_PUBLIC_SITE_URL
 
   const jsonLd = {
     '@context': 'https://schema.org',
