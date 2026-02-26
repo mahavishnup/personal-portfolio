@@ -2,7 +2,7 @@ import 'server-only'
 import { z } from 'zod'
 
 const envSchema = z.object({
-  DATABASE_URL: z.string().url(),
+  DATABASE_URL: z.string().min(1),
   NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
   NODE_ENV: z
     .enum(['development', 'test', 'production'])
