@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button'
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
       {/* Ambient Glow Blobs */}
       <div className="animate-blob absolute top-1/4 -left-20 h-72 w-72 rounded-full bg-purple-500 opacity-15 mix-blend-multiply blur-3xl filter md:h-96 md:w-96 dark:opacity-20" />
       <div className="animate-blob animation-delay-2000 absolute top-1/4 -right-20 h-72 w-72 rounded-full bg-blue-500 opacity-15 mix-blend-multiply blur-3xl filter md:h-96 md:w-96 dark:opacity-20" />
